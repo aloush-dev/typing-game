@@ -7,16 +7,17 @@ import { getWords } from "../_utils/utils";
 
 export default function GameSettings({
   setAvailableWords,
-  gameState,
+  gameMode,
   setGameState,
+  setGameMode
 }: {
   setAvailableWords: Dispatch<SetStateAction<string[]>>;
   setGameState: Dispatch<SetStateAction<string>>;
-  gameState: string;
+  setGameMode: Dispatch<SetStateAction<string>>;
+  gameMode: string;
 }) {
-  const [wordLength, setWordLength] = useState(5);
-  const [wordAmount, setWordAmount] = useState(25);
-  const [gameMode, setGameMode] = useState("EASY");
+  const [wordLength, setWordLength] = useState(4);
+  const [wordAmount, setWordAmount] = useState(15);
 
   const gameStart = async () => {
     const data = await getWords(wordLength, wordAmount);
@@ -96,7 +97,7 @@ export default function GameSettings({
               />
             ) : (
               <div className="flex text-7xl items-center text-white p-12 px-20">
-                {wordLength}
+                {wordAmount}
               </div>
             )}
           </div>

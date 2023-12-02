@@ -1,15 +1,49 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Leaderboards } from "./Leaderboards";
+import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
+import { db } from "../_utils/firebase";
 
 export default function GameEnd({
   setGameState,
+  seconds,
+  gameMode,
 }: {
   setGameState: Dispatch<SetStateAction<string>>;
+  seconds: number;
+  gameMode: string;
 }) {
+  const [disableButton, setDisableButton] = useState(false);
+  const [buttonText, setButtonText] = useState("SUBMIT");
+  const [name, setName] = useState("");
+
+  const addScore = async () => {
+    setDisableButton(true);
+    const collectionRef = collection(
+      db,
+      `leaderboard-${gameMode.toLowerCase()}`
+    );
+
+    try {
+      await addDoc(collectionRef, {
+        name: name,
+        seconds: seconds,
+        postedOn: serverTimestamp(),
+      });
+      setButtonText("SUCCESS");
+      setName("");
+    } catch (error) {
+      setDisableButton(false);
+      setButtonText("ERROR");
+    }
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <div className="text-white text-6xl z-10 justify-center items-center">
-        THANKS FOR PLAYING
+    <div className="flex flex-col p-10 items-center h-screen">
+      <div className="text-white text-4xl z-10 justify-center items-center m-4">
+        You completed in {seconds} seconds
       </div>
 
       <motion.button
@@ -18,6 +52,31 @@ export default function GameEnd({
       >
         PLAY AGAIN?
       </motion.button>
+
+      <div>
+        <input
+          className="p-2 rounded-lg m-2 bg-[#41393E] border-4 border-white text-white "
+          placeholder="Submit your score"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          type="text"
+        ></input>
+        <button
+          className=" px-6 py-2 text-md border-4 border-white text-white rounded-xl"
+          disabled={disableButton}
+          onClick={addScore}
+        >
+          {buttonText}
+        </button>
+      </div>
+
+      <div className="flex">
+        <Leaderboards gameMode="EASY" />
+        <Leaderboards gameMode="MEDIUM" />
+        <Leaderboards gameMode="HARD" />
+      </div>
     </div>
   );
 }
