@@ -9,7 +9,7 @@ export default function GameSettings({
   setAvailableWords,
   gameMode,
   setGameState,
-  setGameMode
+  setGameMode,
 }: {
   setAvailableWords: Dispatch<SetStateAction<string[]>>;
   setGameState: Dispatch<SetStateAction<string>>;
@@ -26,8 +26,8 @@ export default function GameSettings({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen max-w-screen">
-      <div>
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex justify-center items-center flex-wrap">
         <button
           onClick={() => {
             setWordAmount(15);
@@ -70,7 +70,7 @@ export default function GameSettings({
         </button>
       </div>
 
-      <div className="flex flex-col justify-center items-center border-4 rounded-2xl p-4 m-6">
+      <div className="flex flex-col justify-center items-center border-4 rounded-2xl md:p-4 md:m-6 ">
         <div className="text-white text-4xl m-6">{gameMode}</div>
         <div className="flex">
           <div className="text-white flex flex-col justify-center items-center">
@@ -82,7 +82,7 @@ export default function GameSettings({
                 type="length"
               />
             ) : (
-              <div className="flex text-7xl items-center text-white p-12 px-20">
+              <div className="flex items-center text-white p-12 text-4xl md:text-7xl">
                 {wordLength}
               </div>
             )}
@@ -96,7 +96,7 @@ export default function GameSettings({
                 type="amount"
               />
             ) : (
-              <div className="flex text-7xl items-center text-white p-12 px-20">
+              <div className="flex  items-center text-white text-4xl md:text-7xl p-12 ">
                 {wordAmount}
               </div>
             )}
@@ -106,7 +106,7 @@ export default function GameSettings({
 
       <motion.button
         onClick={gameStart}
-        className="text-white rounded-full border-8 border-white w-80 h-80 text-7xl justify-center my-20"
+        className="text-white w-40 h-40 rounded-full border-4 md:border-8 border-white md:w-80 md:h-80 md:text-7xl justify-center my-4 md:my-20"
       >
         START
       </motion.button>

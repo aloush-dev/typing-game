@@ -41,19 +41,19 @@ export default function GameEnd({
   };
 
   return (
-    <div className="flex flex-col p-10 items-center h-screen">
-      <div className="text-white text-4xl z-10 justify-center items-center m-4">
+    <div className="flex flex-col p-10 items-center">
+      <div className="text-white text-4xl z-10 justify-center items-center m-4 text-center">
         You completed in {seconds} seconds
       </div>
 
       <motion.button
         onClick={() => setGameState("BEFORESTART")}
-        className="text-white rounded-full border-8 border-white w-96 h-96 text-7xl justify-center my-20"
+        className="text-white rounded-full md:border-8 border-white md:w-96 md:h-96 md:text-7xl justify-center my-20 w-40 h-40  border-4"
       >
         PLAY AGAIN?
       </motion.button>
 
-      <div>
+      <div className="flex justify-center items-center">
         <input
           className="p-2 rounded-lg m-2 bg-[#41393E] border-4 border-white text-white "
           placeholder="Submit your score"
@@ -72,7 +72,7 @@ export default function GameEnd({
         </button>
       </div>
 
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
         <Leaderboards gameMode="EASY" />
         <Leaderboards gameMode="MEDIUM" />
         <Leaderboards gameMode="HARD" />

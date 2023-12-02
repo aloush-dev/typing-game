@@ -29,10 +29,10 @@ export default function WordScreen({
     <>
       <div className="absolute top-0 left-0 right-0 bottom-0 m-auto justify-center flex">
         <div className="flex flex-col items-center">
-          <div className="text-white text-4xl m-10">
+          <div className="text-white text-2xl md:text-4xl m-10">
             Remaining words : {words.length}
           </div>
-          <div className="text-white text-9xl m-20">
+          <div className="text-white text-8xl md:text-9xl my-20">
             {colouredWord(words[0], currentlyTyping)}
           </div>
         </div>

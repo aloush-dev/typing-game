@@ -64,7 +64,7 @@ export function CustomNumberInput({
   };
 
   return (
-    <div className="flex text-7xl items-center text-white">
+    <div className="flex text-4xl md:text-7xl items-center text-white ">
       <motion.div
         className="m-12"
         variants={slideVariants}
@@ -74,7 +74,7 @@ export function CustomNumberInput({
       >
         {value}
       </motion.div>
-      <div className="flex flex-col">
+      <div className="flex flex-col p-2">
         <motion.button
           onClick={increaseValue}
           variants={bounceVariants}

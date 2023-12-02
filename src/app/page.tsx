@@ -49,49 +49,41 @@ export default function Home() {
 
   return (
     <>
-      <main className="bg-[#41393E] h-screen">
-        {gameState === "BEFORESTART" ? (
-          <GameSettings
-            setAvailableWords={setAvailableWords}
-            gameMode={gameMode}
-            setGameMode={setGameMode}
-            setGameState={setGameState}
+      {gameState === "BEFORESTART" ? (
+        <GameSettings
+          setAvailableWords={setAvailableWords}
+          gameMode={gameMode}
+          setGameMode={setGameMode}
+          setGameState={setGameState}
+        />
+      ) : (
+        ""
+      )}
+
+      {gameState === "INPROGRESS" ? (
+        <div className="relative flex">
+          <TypableScreen
+            typedText={currentlyTyping}
+            setTypedText={setCurrentlyTyping}
           />
-        ) : (
-          ""
-        )}
-
-        {gameState === "INPROGRESS" ? (
-          <div className="relative flex">
-            <TypableScreen
-              typedText={currentlyTyping}
-              setTypedText={setCurrentlyTyping}
-            />
-            <WordScreen
-              words={availablewords}
-              currentlyTyping={currentlyTyping}
-            />
-          </div>
-        ) : (
-          ""
-        )}
-
-        {gameState === "GAMEEND" ? (
-          <GameEnd
-            setGameState={setGameState}
-            seconds={seconds}
-            gameMode={gameMode}
+          <WordScreen
+            words={availablewords}
+            currentlyTyping={currentlyTyping}
           />
-        ) : (
-          ""
-        )}
-
-        <div className="text-white absolute bottom-0 right-0 m-6">
-          <Link href="https://aloush.dev" target="_blank">
-            aloush.dev
-          </Link>
         </div>
-      </main>
+      ) : (
+        ""
+      )}
+
+      {gameState === "GAMEEND" ? (
+        <GameEnd
+          setGameState={setGameState}
+          seconds={seconds}
+          gameMode={gameMode}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }
