@@ -74,19 +74,31 @@ export default function GameSettings({
         <div className="flex">
           <div className="text-white flex flex-col justify-center items-center">
             WORD LENGTH
-            <CustomNumberInput
-              value={wordLength}
-              setValue={setWordLength}
-              type="length"
-            />
+            {gameMode === "CUSTOM" ? (
+              <CustomNumberInput
+                value={wordLength}
+                setValue={setWordLength}
+                type="length"
+              />
+            ) : (
+              <div className="flex text-7xl items-center text-white p-12 px-20">
+                {wordLength}
+              </div>
+            )}
           </div>
           <div className="text-white flex flex-col justify-center items-center">
             WORD AMOUNT
-            <CustomNumberInput
-              value={wordAmount}
-              setValue={setWordAmount}
-              type="amount"
-            />
+            {gameMode === "CUSTOM" ? (
+              <CustomNumberInput
+                value={wordAmount}
+                setValue={setWordAmount}
+                type="amount"
+              />
+            ) : (
+              <div className="flex text-7xl items-center text-white p-12 px-20">
+                {wordLength}
+              </div>
+            )}
           </div>
         </div>
       </div>

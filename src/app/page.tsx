@@ -5,6 +5,7 @@ import GameSettings from "./_components/GameSettings";
 import TypableScreen from "./_components/TypeableScreen";
 import WordScreen from "./_components/WordScreen";
 import GameEnd from "./_components/GameEnd";
+import Link from "next/link";
 
 export default function Home() {
   const [availablewords, setAvailableWords] = useState([""]);
@@ -30,6 +31,7 @@ export default function Home() {
         ) : (
           ""
         )}
+
         {gameState === "INPROGRESS" ? (
           <div className="relative flex">
             <TypableScreen
@@ -44,9 +46,15 @@ export default function Home() {
         ) : (
           ""
         )}
+
         {gameState === "GAMEEND" ? <GameEnd setGameState={setGameState} /> : ""}
+
+        <div className="flex items-center text-white">
+          <Link href="https://aloush.dev" target="_blank">
+            aloush.dev
+          </Link>
+        </div>
       </main>
-      <footer></footer>
     </>
   );
 }
