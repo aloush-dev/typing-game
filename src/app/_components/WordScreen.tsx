@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function WordScreen({
   words,
   currentlyTyping,
@@ -5,6 +7,7 @@ export default function WordScreen({
   words: string[];
   currentlyTyping: string;
 }) {
+  
   const colouredWord = (word: string, typedWord: string) => {
     return word.split("").map((letter, index) => {
       const typedLetter = typedWord[index];

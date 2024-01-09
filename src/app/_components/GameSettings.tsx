@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { CustomNumberInput } from "./CustomNumberInput";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { getWords } from "../_utils/utils";
 
 export default function GameSettings({
@@ -40,7 +40,7 @@ export default function GameSettings({
         </button>
         <button
           onClick={() => {
-            setWordAmount(25);
+            setWordAmount(20);
             setWordLength(7);
             setGameMode("MEDIUM");
           }}
@@ -50,7 +50,7 @@ export default function GameSettings({
         </button>
         <button
           onClick={() => {
-            setWordAmount(40);
+            setWordAmount(25);
             setWordLength(9);
             setGameMode("HARD");
           }}

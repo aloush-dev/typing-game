@@ -5,7 +5,6 @@ import GameSettings from "./_components/GameSettings";
 import TypableScreen from "./_components/TypeableScreen";
 import WordScreen from "./_components/WordScreen";
 import GameEnd from "./_components/GameEnd";
-import Link from "next/link";
 
 export default function Home() {
   const [availablewords, setAvailableWords] = useState([""]);

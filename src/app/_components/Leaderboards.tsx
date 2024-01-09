@@ -1,10 +1,15 @@
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../_utils/firebase";
-import { collection } from "firebase/firestore";
+import { collection, orderBy, query, limit } from "firebase/firestore";
 
 export const Leaderboards = ({ gameMode }: { gameMode: string }) => {
   const [value, loading, error] = useCollection(
-    collection(db, `leaderboard-${gameMode.toLowerCase()}`),
+    query(
+      collection(db, `leaderboard-${gameMode.toLowerCase()}`),
+      orderBy("seconds", "asc"),
+      limit(10)
+    ),
+
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
